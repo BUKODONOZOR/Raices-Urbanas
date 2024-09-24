@@ -5,6 +5,7 @@ import Contest.Project.entities.Role;
 import Contest.Project.entities.User;
 import Contest.Project.repositories.RoleRepository;
 import Contest.Project.repositories.UserRepository;
+import Contest.Project.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ public class UserService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     public User register(UserDTO userDTO) {
         if (userRepository.findByEmail(userDTO.getEmail()) != null) {

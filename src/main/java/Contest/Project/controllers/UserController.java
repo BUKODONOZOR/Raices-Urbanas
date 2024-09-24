@@ -3,6 +3,8 @@ package Contest.Project.controllers;
 import Contest.Project.dtos.LoginDTO;
 import Contest.Project.dtos.UserDTO;
 import Contest.Project.entities.User;
+import Contest.Project.repositories.UserRepository;
+import Contest.Project.security.JwtUtil;
 import Contest.Project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserDTO userDTO) {
         try {
@@ -27,6 +32,18 @@ public class UserController {
     }
 
     @PostMapping("/login")
+    public String login(@RequestBody UserDTO userDTO) {
+        User existingUser = userService.authenticate(userDTO.getEmail(), userDTO.getPassword());
+
+        if (existingUser == null) {
+            throw new RuntimeException("Invalid credentials");
+        }
+
+        return jwtUtil.generateToken(existingUser.getEmail());
+    }
+
+    /*
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
         User user = userService.authenticate(loginDTO.getEmail(), loginDTO.getPassword());
         if (user != null) {
@@ -34,6 +51,6 @@ public class UserController {
         } else {
             return new ResponseEntity<>("Contraseña incorrecta o usuario no encontrado", HttpStatus.UNAUTHORIZED);
         }
-    }
+    }*/
 
 }
