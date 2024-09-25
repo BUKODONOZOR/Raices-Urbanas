@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .requestMatchers("/RaicesUrbanas/login", "/RaicesUrbanas/register").permitAll()
                 .requestMatchers("/your/secured/url").hasRole("Vendedor")
                 .requestMatchers("/your/secured/url").hasRole("Comprador")
-                /*.anyRequest().authenticated()*/
+                .anyRequest().permitAll()
         );
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
