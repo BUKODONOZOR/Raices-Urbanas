@@ -25,6 +25,8 @@ public class SecurityConfig {
         http.
                 authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/RaicesUrbanas/login", "/RaicesUrbanas/register").permitAll()
+                .requestMatchers("/your/secured/url").hasRole("Vendedor")
+                .requestMatchers("/your/secured/url").hasRole("Comprador")
                 .anyRequest().authenticated()
         );
 
