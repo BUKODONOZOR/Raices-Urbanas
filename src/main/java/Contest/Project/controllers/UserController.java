@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/RaicesUrbanas")
-@CrossOrigin(origins = "https://raices-urbanas-deploy-4yte.vercel.app" )
+//@CrossOrigin(origins = "https://raices-urbanas-deploy-4yte.vercel.app" )
 public class UserController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @CrossOrigin(origins = "https://raices-urbanas-deploy-4yte.vercel.app" )
+    //@CrossOrigin(origins = "https://raices-urbanas-deploy-4yte.vercel.app" )
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserDTO userDTO) {
         try {
@@ -32,7 +32,7 @@ public class UserController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-    @CrossOrigin(origins = "https://raices-urbanas-deploy-4yte.vercel.app" )
+   // @CrossOrigin(origins = "https://raices-urbanas-deploy-4yte.vercel.app" )
     @PostMapping("/login")
     public String login(@RequestBody UserDTO userDTO) {
         User existingUser = userService.authenticate(userDTO.getEmail(), userDTO.getPassword());
