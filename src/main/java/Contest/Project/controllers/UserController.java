@@ -1,13 +1,10 @@
 package Contest.Project.controllers;
 
-import Contest.Project.dtos.LoginDTO;
 import Contest.Project.dtos.UserDTO;
 import Contest.Project.entities.User;
-import Contest.Project.repositories.UserRepository;
 import Contest.Project.security.JwtUtil;
 import Contest.Project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
