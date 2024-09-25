@@ -30,7 +30,7 @@ public class UserController {
         }
     }
 
-   @PostMapping("/login")
+    @PostMapping("/login")
     public String login(@RequestBody UserDTO userDTO) {
         User existingUser = userService.authenticate(userDTO.getEmail(), userDTO.getPassword());
         if (existingUser == null) {
