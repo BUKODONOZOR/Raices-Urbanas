@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/RaicesUrbanas")
-
+@CrossOrigin(origins = "https://raices-urbanas-deploy-9w99.vercel.app" )
 public class UserController {
 
     @Autowired
