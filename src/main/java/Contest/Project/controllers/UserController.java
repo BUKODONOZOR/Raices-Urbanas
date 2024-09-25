@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/RaicesUrbanas")
+@CrossOrigin
 public class UserController {
 
     @Autowired
