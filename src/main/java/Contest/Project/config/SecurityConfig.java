@@ -21,7 +21,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    protected void configure(HttpSecurity http) throws Exception {
+    /*protected void configure(HttpSecurity http) throws Exception {
         http.
                 authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/RaicesUrbanas/login", "/RaicesUrbanas/register").permitAll()
@@ -31,6 +31,21 @@ public class SecurityConfig {
         );
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    }*/
+
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/register", "/login").permitAll() // Public access to login and registration
+                        .anyRequest().authenticated() // Require authentication for other requests
+                )
+                .formLogin(form -> form
+                        .loginPage("https://raices-urbanas-deploy-4yte.vercel.app/login") // Custom login page
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .permitAll()
+                );
     }
 
 }
